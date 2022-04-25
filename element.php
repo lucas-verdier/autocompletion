@@ -1,3 +1,19 @@
+<?php
+try {
+    $db = new PDO('mysql:host=localhost;dbname=autocompletion', 'admin', 'admin');
+}
+catch (Exception $e) {
+    die('error : ' . $e->getMessage());
+}
+
+$item = htmlspecialchars($_GET['id']);
+
+$query = $db->prepare("SELECT * FROM `atome` WHERE `slug` = :item");
+$query->execute(array(
+        ':item' => $item
+));
+$res = $query->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +46,17 @@
     </form>
     <section></section>
     <section></section>
+    <article>
+        <h2><?= $res['nom'] ?></h2>
+        <table>
+            <?php foreach($res as $key => $value): ?>
+            <tr>
+                <td><?= $key ?></td>
+                <td><?= $value ?></td>
+            </tr>
+            <?php endforeach ?>
+        </table>
+    </article>
 </main>
 </body>
 </html>

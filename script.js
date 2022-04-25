@@ -3,11 +3,12 @@
 document.addEventListener('DOMContentLoaded', function loaded() {
 
     var input = document.querySelector('.row input')
-    console.log(input)
+    // console.log(input)
     var form = document.querySelector('form')
-    console.log(form)
+    // console.log(form)
     var sectionUp = document.querySelector('main section:first-of-type')
     var sectionDown = document.querySelector('main section:last-of-type')
+    // console.log(sectionDown)
 
     input.addEventListener('input', function() {
         if (input.value.length == 0) {
@@ -33,14 +34,16 @@ document.addEventListener('DOMContentLoaded', function loaded() {
 
                     for (let i = 0; i<response['start'].length; i++) {
                         let a = document.createElement('a')
-                        a.innerText = response['start'][i]["slug"]
+                        a.innerText = response['start'][i]["slug"]+' ('+response['start'][i]["symbole"]+')'
+                        a.href = 'element.php?id='+response['start'][i]["slug"]
                         sectionUp.appendChild(a)
                     }
 
                     for (let i = 0; i<response['contain'].length; i++) {
                         // if (response['start'][i]['slug'] != response['contain'][i]["slug"]) {
                             let a = document.createElement('a')
-                            a.innerText = response['contain'][i]["slug"]
+                            a.innerText = response['contain'][i]["slug"]+' ('+response['contain'][i]["symbole"]+')'
+                            a.href = 'element.php?id='+response['contain'][i]["slug"]
                             sectionDown.appendChild(a)
                         // }
                     }
@@ -55,11 +58,12 @@ document.addEventListener('DOMContentLoaded', function loaded() {
     //
     //     }
     // })
-
-
-    input.addEventListener('keypress', function(e) {
+    //
+    document.addEventListener('keypress', function(e) {
+        console.log(e)
         if (e.key == 'Enter') {
-            console.log('here')
+            e.preventDefault()
+            document.location.href = 'recherche.php?search='+input.value
             console.log(input.value)
         }
     })

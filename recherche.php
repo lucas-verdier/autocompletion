@@ -1,3 +1,23 @@
+<?php
+try {
+    $db = new PDO('mysql:host=localhost;dbname=autocompletion', 'admin', 'admin');
+}
+catch (Exception $e) {
+    die('error : ' . $e->getMessage());
+}
+
+$queryStart = $db->prepare("SELECT * FROM `atome` WHERE `nom` LIKE CONCAT(:input, '%')");
+$queryStart->execute(array(
+    ':input' => htmlspecialchars($_GET['search'])
+));
+$resStart = $queryStart->fetchAll(PDO::FETCH_ASSOC);
+
+$queryContain = $db->prepare("SELECT * FROM `atome` WHERE `nom` LIKE CONCAT('%', :input, '%')");
+$queryContain->execute(array(
+    ':input' => htmlspecialchars($_GET['search'])
+));
+$resContain = $queryContain->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +50,16 @@
     </form>
     <section></section>
     <section></section>
+    <article>
+        <?php foreach($resStart as $key => $value): ?>
+            <a href="#"><?= $value['nom'] ?></a>
+        <?php endforeach ?>
+    </article>
+    <article>
+        <?php foreach($resContain as $key => $value): ?>
+            <a href="#"><?= $value['nom'] ?></a>
+        <?php endforeach ?>
+    </article>
 </main>
 </body>
 </html>
