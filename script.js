@@ -27,7 +27,10 @@ document.addEventListener('DOMContentLoaded', function loaded() {
                     console.log(response)
 
                     var items = document.querySelectorAll('a')
+                    var p     = document.querySelectorAll('p')
                     items.forEach(element => element.remove())
+                    p.forEach(element => element.remove())
+
 
                     for (let i = 0; i<response['start'].length; i++) {
                         let a = document.createElement('a')
