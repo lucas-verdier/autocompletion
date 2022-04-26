@@ -1,10 +1,6 @@
 <?php
-try {
-    $db = new PDO('mysql:host=localhost;dbname=autocompletion', 'admin', 'admin');
-}
-catch (Exception $e) {
-    die('error : ' . $e->getMessage());
-}
+
+require_once('db.php');
 
 $queryStart = $db->prepare("SELECT * FROM `atome` WHERE `nom` LIKE CONCAT(:input, '%')");
 $queryStart->execute(array(
@@ -33,7 +29,7 @@ $resContain = $queryContain->fetchAll(PDO::FETCH_ASSOC);
     <title>Atom - Autocomplétion</title>
 </head>
 <body>
-<main>
+<header>
     <h1>Atom Search</h1>
     <form method="GET">
         <div class="row">
@@ -48,16 +44,28 @@ $resContain = $queryContain->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </form>
+</header>
+<main id="element">
     <section></section>
     <section></section>
-    <article>
+    <article class="results">
         <?php foreach($resStart as $key => $value): ?>
-            <a href="#"><?= $value['nom'] ?></a>
+        <div>
+            <a href="element.php?id=<?= $value['slug'] ?>"><?= $value['symbole'] . ' - ' . $value['nom'] ?></a>
+            <p>Symbole : <?= $value['symbole'] ?></p>
+            <p>Découvert par : <?= $value['decouverte_noms'].'('.$value['decouverte_pays'].')'. ' - ' . $value['decouverte_annee'] ?></p>
+            <a href="element.php?id=<?= $value['slug'] ?>">Voir plus...</a>
+        </div>
         <?php endforeach ?>
     </article>
-    <article>
+    <article class="results">
         <?php foreach($resContain as $key => $value): ?>
-            <a href="#"><?= $value['nom'] ?></a>
+        <div>
+            <a href="element.php?id=<?= $value['slug'] ?>"><?= $value['symbole'] . ' - ' . $value['nom'] ?></a>
+            <p>Symbole : <?= $value['symbole'] ?></p>
+            <p>Découvert par : <?= $value['decouverte_noms'].'('.$value['decouverte_pays'].')'. ' - ' . $value['decouverte_annee'] ?></p>
+            <a href="element.php?id=<?= $value['slug'] ?>">Voir plus...</a>
+        </div>
         <?php endforeach ?>
     </article>
 </main>

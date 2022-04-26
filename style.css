@@ -77,3 +77,90 @@ section:last-of-type a:hover {
     border-bottom: 2px solid #ee6e73;
     font-size: 1.1em;
 }
+
+/* __________________________  ELEMENT.PHP ______________________________ */
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid rgba(38, 166, 154, 0.21);
+}
+header>h1 {
+    margin-left: 50px;
+}
+header>form {
+    margin-left: 50px;
+    margin-top: 25px;
+}
+
+#element section:first-of-type {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+#element section:first-of-type>a {
+    width: 43%;
+}
+#element section:last-of-type {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+tr:hover {
+    background-color: rgba(38, 166, 154, 0.06);
+}
+.tdKey {
+    color: #26a69a;
+    font-weight: bold;
+}
+.tdKey:hover {
+    color: #ee6e73;lign-items: flex-start;
+}
+#element section:last-of-type>a {
+    width: 43%;
+}
+
+#element article {
+    width: 80%;
+    justify-content: flex-start;
+}
+#element article>h2 {
+    font-family: 'Shadows Into Light', cursive;
+    color: #26a69a;
+    font-weight: 600;
+}
+#element article>table {
+    width: 70%;
+}
+tr:hover {
+    background-color: rgba(38, 166, 154, 0.06);
+}
+.tdKey {
+    color: #26a69a;
+    font-weight: bold;
+}
+.tdKey:hover {
+    color: #ee6e73;
+    font-weight: bold;
+}
+
+/* _______________________________ RECHERCHE.PHP _______________________ */
+.results {
+    width: 100% !important;
+}
+.results>div {
+    line-height: 10px;
+    margin-left: 2.5%;
+    margin-bottom: 40px;
+}
+.results div>a:first-of-type {
+    color: #26a69a;
+    font-size: 1.4em;
+    text-decoration: underline;
+}
+.results div>a:first-of-type:hover {
+    color: #ee6e73;
+}

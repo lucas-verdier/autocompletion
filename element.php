@@ -1,10 +1,6 @@
 <?php
-try {
-    $db = new PDO('mysql:host=localhost;dbname=autocompletion', 'admin', 'admin');
-}
-catch (Exception $e) {
-    die('error : ' . $e->getMessage());
-}
+
+require_once('db.php');
 
 $item = htmlspecialchars($_GET['id']);
 
@@ -29,7 +25,7 @@ $res = $query->fetch(PDO::FETCH_ASSOC);
     <title>Atom - Autocomplétion</title>
 </head>
 <body>
-<main>
+<header>
     <h1>Atom Search</h1>
     <form method="GET">
         <div class="row">
@@ -44,6 +40,8 @@ $res = $query->fetch(PDO::FETCH_ASSOC);
             </div>
         </div>
     </form>
+</header>
+<main id="element">
     <section></section>
     <section></section>
     <article>
@@ -51,7 +49,7 @@ $res = $query->fetch(PDO::FETCH_ASSOC);
         <table>
             <?php foreach($res as $key => $value): ?>
             <tr>
-                <td><?= $key ?></td>
+                <td class="tdKey"><?= $key ?></td>
                 <td><?= $value ?></td>
             </tr>
             <?php endforeach ?>
