@@ -40,10 +40,10 @@ document.addEventListener('DOMContentLoaded', function loaded() {
                     }
 
                     for (let i = 0; i<response['contain'].length; i++) {
-                            let a = document.createElement('a')
-                            a.innerText = response['contain'][i]["slug"]+' ('+response['contain'][i]["symbole"]+')'
-                            a.href = 'element.php?id='+response['contain'][i]["slug"]
-                            sectionDown.appendChild(a)
+                        let a = document.createElement('a')
+                        a.innerText = response['contain'][i]["slug"]+' ('+response['contain'][i]["symbole"]+')'
+                        a.href = 'element.php?id='+response['contain'][i]["slug"]
+                        sectionDown.appendChild(a)
                     }
                 })
         }
